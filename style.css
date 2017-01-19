@@ -10,7 +10,7 @@ http://www.freshdesignweb.com/beautiful-registration-form-with-html5-and-css3.ht
 
 .form input[type="text"] { width: 400px; }
 .form input[type="email"] { width: 400px; }
-.form input[type="password"] { width: 400px; }
+.form input[type="text"] { width: 400px; }
 .form input.birthday{width:60px;}
 .form input.birthyear{width:120px;}
 .form label { color: #000; font-weight:bold;font-size: 12px;font-family:Arial, Helvetica; }
