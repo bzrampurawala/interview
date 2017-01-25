@@ -4,6 +4,14 @@
 	<title>CodeStrike Interview Test</title>
 </head>
 <body>
+<script type="text/javascript">
+
+function textAreaAdjust(o) {
+  o.style.height = "1px";
+  o.style.height = (25+o.scrollHeight)+"px";
+}
+
+</script>
 <style>
 
 body{
@@ -93,11 +101,11 @@ input[type=submit] {
 		<br>
 
 		<li>Question?</li>
-		<textarea style="width: 100%;height: 150px;font-size: 20px"></textarea>
+		<textarea onkeyup="textAreaAdjust(this)" style="overflow:hidden;width: 100%;font-size: 20px"></textarea>
 		<br><br>
 
 		<li></li>
-		<textarea style="width: 100%;height: 150px;font-size: 20px"></textarea>
+		<textarea onkeyup="textAreaAdjust(this)" style="overflow:hidden;width: 100%;font-size: 20px"></textarea>
 		
 	</ol>
 	<pre style="text-align: center;"><input type="submit" name="submit" style="font-size: 18px;"></pre>
