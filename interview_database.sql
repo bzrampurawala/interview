@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2017 at 06:12 PM
+-- Generation Time: Jan 26, 2017 at 10:05 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -156,7 +156,8 @@ CREATE TABLE `studentinfo` (
   `bday` int(5) NOT NULL,
   `byear` int(10) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `phone` varchar(20) NOT NULL
+  `phone` varchar(20) NOT NULL,
+  `uid` varchar(500) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -167,7 +168,8 @@ CREATE TABLE `studentinfo` (
 -- Indexes for table `studentinfo`
 --
 ALTER TABLE `studentinfo`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uid` (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -177,7 +179,7 @@ ALTER TABLE `studentinfo`
 -- AUTO_INCREMENT for table `studentinfo`
 --
 ALTER TABLE `studentinfo`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

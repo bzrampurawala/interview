@@ -44,7 +44,6 @@
             }
             
          }
-         echo json_encode($question);
          $k = 1;
          for ($j=1; $j <4 ; $j++) { 
             $num = $array[$j]*4;
@@ -57,8 +56,24 @@
                $k++;
           }
          }
-         echo json_encode($answer);
+         
          mysqli_close($conn);
+         session_start();
+         $_SESSION ['question'] = $question;
+         $_SESSION ['answer'] = $answer;  
+
+         ob_start(); // ensures anything dumped out will be caught
+            // do stuff here
+             $url = 'http://localhost/interview/questionspage.php'; // this can be set based on whatever
+
+            // clear out the output buffer
+            while (ob_get_status()) 
+            {
+                ob_end_clean();
+            }
+
+            // no redirect
+            header( "Location: $url" );
          function check($array, $num)
          {
             for ($i=0; $i <count($array); $i++) { 
@@ -69,4 +84,5 @@
             }
 
          }
+
 ?>
