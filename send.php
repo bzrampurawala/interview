@@ -22,7 +22,7 @@ $result = mysqli_query($conn, "SELECT * From studentinfo Where uid = '$uid'");
          
 $headers = "From: Codestrike <sender@some.com>\r\n";
 $headers .= "Content_type: text/html\r\n";
-$data = mail('burhanuddinzrampurawala@yahoo.com', $subject, $body, $headers);
+$data = mail('your email', $subject, $body, $headers);
 
 ob_start(); // ensures anything dumped out will be caught
             // do stuff here
