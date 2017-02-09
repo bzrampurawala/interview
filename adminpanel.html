@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Administrator</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<style>
+		button.accordion {
+		    background-color: #eee;
+		    color: #444;
+		    cursor: pointer;
+		    padding: 18px;
+		    width: 100%;
+		    border: none;
+		    text-align: center;
+		    outline: none;
+		    font-size: 15px;
+		    transition: 0.4s;
+		}
+
+		button.accordion.active, button.accordion:hover {
+		    background-color: #ddd; 
+		}
+
+		div.panel {
+		    /*padding: 0 18px;*/
+		    display: none;
+		    background-color: white;
+		}
+		.num_size{
+			font-size: 45px;
+		}
+		.text_size{
+			font-size: 20px;
+			margin-bottom: -10px;
+		}
+		td , th{
+			text-align: center;
+		}
+		.footer_att{
+			background-color: #333;
+			margin-top: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+<!--<div id="pending_test"></div>
+<hr>
+<div id="writing_test"></div>
+<hr>
+<div id="submited_test"></div>
+<hr>
+<div id="total"></div>-->
+<nav class="navbar navbar-inverse" style="border-radius: 0px;">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <p>DashBord</p>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container" style="padding-top: 70px; padding-bottom: 50px;">
+   <div class="row">
+    <div class="col-md-2" style="margin-left: 32px;">
+   		<p class="text_size" style="text-align: center;">Registered</p>
+   		<p class="num_size" style="text-align: center;" id="registered"></p>
+   	</div>
+   	<div class="col-md-2 col-md-offset-1">
+   		<p class="text_size"  style="text-align: center;">Writting</p>
+   		<p class="num_size" style="text-align: center;" id="writting"></p>
+   	</div>
+   	<div class="col-md-2 col-md-offset-1">
+   		<p class="text_size" style="text-align: center;">Pending</p>
+   		<p class="num_size" style="text-align: center;" id="pending"></p>
+   	</div>
+   	<div class="col-md-2 col-md-offset-1">
+   		<p class="text_size" style="text-align: center;">Submitted</p>
+   		<p class="num_size" style="text-align: center;" id="submitted"></p>
+   	</div>
+
+   </div>
+   <div class="row">
+   	<hr>
+   </div>
+	
+</div>
+<h2 style="text-align: center;margin-bottom: 75px;">Record</h2>
+
+<button class="accordion">writting test</button>
+<div class="panel">
+<!--  <p id="writing_test"></p>-->
+<table class="table table-hover" id="writing_test">
+    
+   </table>
+</div>
+
+<button class="accordion">pending test</button>
+<div class="panel">
+  <!--<p id="pending_test"></p>-->
+  <table class="table table-hover" id="pending_test">
+    
+   </table>
+</div>
+
+<button class="accordion">submitted test</button>
+<div class="panel">
+  
+  <!--<p id="submited_test"></p>-->
+  <table class="table table-hover" id="submited_test">
+    
+   </table>
+</div>
+
+<button class="accordion">registered </button>
+<div class="panel">
+    <!--<p id="registered_for_test"></p>-->
+    <table class="table table-hover" id="registered_for_test">
+    
+   </table>
+
+</div>
+
+<footer class="footer_att">
+  <div class="container " style="height: 75px;">
+  	
+  </div>
+	
+</footer>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+	for (i = 0; i < acc.length; i++) {
+		acc[i].onclick = function(){
+		    this.classList.toggle("active");
+		    var panel = this.nextElementSibling;
+		    if (panel.style.display === "block") {
+		        panel.style.display = "none";
+		    } else {
+		        panel.style.display = "block";
+		    }
+		}
+    } 
+
+
+    /*function myFunction() {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "NEW CELL1";
+    cell2.innerHTML = "NEW CELL2";
+    }*/
+
+
+    update();
+
+	function update0(){
+	var obj, dbParam, xmlhttp, myObj, x, txt = "";
+	obj = { "table":"customers", "limit":10 };
+	dbParam = JSON.stringify(obj);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	        myObj = JSON.parse(this.responseText);
+	        var i=0;
+	        txt+="<tr style=' background-color: #f1f1f1;'><th>Name</th><th>Email</th><th>Branch</th><th>Year</th></tr>";
+	        for (x in myObj) {
+	            txt +="<tr><td>"+ myObj[x].name + "</td><td>"+ myObj[x].email+"</td><td>"+ myObj[x].branch+"</td><td>"+ myObj[x].year+"</td></tr>";
+	            /*var table = document.getElementById("pending_test");
+			    var row = table.insertRow(1);
+			    var cell1 = row.insertCell(0);
+			    var cell2 = row.insertCell(1);
+			    var cell3 = row.insertCell(2);
+			    var cell4 = row.insertCell(3);
+			    cell1.innerHTML = myObj[x].name;
+			    cell2.innerHTML = myObj[x].email;
+			    cell3.innerHTML = myObj[x].branch;
+			    cell4.innerHTML = myObj[x].year;*/
+			    i++;
+
+	        }
+	        document.getElementById("pending_test").innerHTML = txt;
+	        document.getElementById("pending").innerHTML=i;
+	    }
+	};
+	xmlhttp.open("GET", "http://localhost/interview/server.php?x=" + "0", true);
+	xmlhttp.send();
+    }
+
+
+    function update1(){
+	var obj, dbParam, xmlhttp, myObj, x, txt = "";
+	obj = { "table":"customers", "limit":10 };
+	dbParam = JSON.stringify(obj);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	        myObj = JSON.parse(this.responseText);
+	        var i=0;
+	        txt+="<tr style=' background-color: #f1f1f1;'><th>Name</th><th>Email</th><th>Branch</th><th>Year</th></tr>";
+	        for (x in myObj) {
+	            txt +="<tr><td>"+ myObj[x].name + "</td><td>"+ myObj[x].email+"</td><td>"+ myObj[x].branch+"</td><td>"+ myObj[x].year+"</td></tr>";
+	            i++;
+	        }
+	        document.getElementById("writing_test").innerHTML = txt;
+	        document.getElementById("writting").innerHTML=i;
+	    }
+	};
+	xmlhttp.open("GET", "http://localhost/interview/server.php?x=" + "1", true);
+	xmlhttp.send();
+    }
+
+
+    function update2(){
+	var obj, dbParam, xmlhttp, myObj, x, txt = "";
+	obj = { "table":"customers", "limit":10 };
+	dbParam = JSON.stringify(obj);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	        myObj = JSON.parse(this.responseText);
+	        var i=0;
+	        txt+="<tr style=' background-color: #f1f1f1;'><th>Name</th><th>Email</th><th>Branch</th><th>Year</th></tr>";
+	        for (x in myObj) {
+	            txt +="<tr><td>"+ myObj[x].name + "</td><td>"+ myObj[x].email+"</td><td>"+ myObj[x].branch+"</td><td>"+ myObj[x].year+"</td></tr>";
+	            i++;
+	        }
+	        document.getElementById("submited_test").innerHTML = txt;
+	        document.getElementById("submitted").innerHTML=i;
+	    }
+	};
+	xmlhttp.open("GET", "http://localhost/interview/server.php?x=" + "2", true);
+	xmlhttp.send();
+    }
+
+    function update3(){
+	var obj, dbParam, xmlhttp, myObj, x, txt = "";
+	obj = { "table":"customers", "limit":10 };
+	dbParam = JSON.stringify(obj);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	        myObj = JSON.parse(this.responseText);
+	        var i=0;
+	        txt+="<tr style=' background-color: #f1f1f1;'><th>Name</th><th>Email</th><th>Branch</th><th>Year</th></tr>";
+	        for (x in myObj) {
+	            txt +="<tr><td>"+ myObj[x].name + "</td><td>"+ myObj[x].email+"</td><td>"+ myObj[x].branch+"</td><td>"+ myObj[x].year+"</td></tr>";
+	            i++;
+	        }
+	        document.getElementById("registered_for_test").innerHTML = txt;
+	        document.getElementById("registered").innerHTML=i;
+	    }
+	};
+	xmlhttp.open("GET", "http://localhost/interview/server.php?x=" + "3", true);
+	xmlhttp.send();
+    }
+
+
+    function update(){
+	update0();
+	update1();
+	update2();
+	update3();
+    }
+	setInterval(update,4000);
+	//update();
+
+</script>
+</html>
