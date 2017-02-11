@@ -16,8 +16,8 @@
          $uid = uniqid('', true);
          $_SESSION['uid'] = $uid;
 
-         	$query = "INSERT INTO studentinfo(name, email, branch, year, bmonth, bday, byear, gender, phone, uid) VALUES('$name', '$email', '$branch', '$year', '$bmonth', '$bday', '$byear', '$gender', '$phone', '$uid')";      
-            mysqli_query($conn, $query);
+         	$query = "INSERT INTO studentinfo(name, email, branch, year, bmonth, bday, byear, gender, phone, uid) VALUES('$name', '$email', '$branch', '$year', '$bmonth', '$bday', '$byear', '$gender', '$phone', '$uid')";
+            echo (String)mysqli_query($conn, $query);
             mysqli_close($conn);
 
             ob_start(); // ensures anything dumped out will be caught

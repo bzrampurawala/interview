@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2017 at 10:05 AM
+-- Generation Time: Feb 11, 2017 at 02:09 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -157,6 +157,7 @@ CREATE TABLE `studentinfo` (
   `byear` int(10) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `phone` varchar(20) NOT NULL,
+  `check` int(1) NOT NULL DEFAULT '0',
   `uid` varchar(500) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
