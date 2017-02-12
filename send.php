@@ -22,7 +22,12 @@ $result = mysqli_query($conn, "SELECT * From studentinfo Where uid = '$uid'");
          
 $headers = "From: Codestrike <sender@some.com>\r\n";
 $headers .= "Content_type: text/html\r\n";
-$data = mail('your email', $subject, $body, $headers);
+$data = mail('burhanuddinzrampurawala@yahoo.com', $subject, $body, $headers);
+            
+
+            //2 is for submitted
+            mysqli_query($conn, "UPDATE studentinfo SET status = '2' WHERE uid = '$uid'");
+            mysqli_close($conn);
 
 ob_start(); // ensures anything dumped out will be caught
             // do stuff here

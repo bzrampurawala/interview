@@ -49,6 +49,7 @@
   require_once 'connect.php';
          $db = new connect();
          $conn = $db->connection();
+         session_start();
          $array =  array('0' => 0);
          $question = array();
          $sql = " Select uid From questions";
@@ -105,7 +106,6 @@
          }
          
          mysqli_close($conn);
-         session_start();
          $_SESSION ['question'] = $question;
          function check($array, $num)
          {

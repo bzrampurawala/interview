@@ -12,7 +12,7 @@
 
     }
     else{
-	$query="SELECT `name`,`email`,`branch`,`year` FROM `studentinfo` WHERE `check`=$temp";
+	$query="SELECT `name`,`email`,`branch`,`year` FROM `studentinfo` WHERE `status`=$temp";
     }
     //$query="SELECT `name` FROM `studentinfo`";
 
